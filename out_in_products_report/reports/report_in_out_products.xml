@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
         
-
+        <!-- Action de reporte XLSX -->
         <record id="report_in_out_products_xlsx_action" model="ir.actions.report">
             <field name="name">Reporte de salidas y entradas XLSX</field>
             <field name="model">in.out.products.wizard</field>
@@ -13,6 +13,7 @@
             <field name="attachment_use" eval="False"/>
         </record>
 
+        <!-- Formato de hoja horizontal -->
         <record id="report_custom_out_in_products_paperformat" model="report.paperformat">
             <field name="name">Papel de reporte de salida y entrada de productos</field>
             <field name="format">Letter</field>
@@ -25,7 +26,7 @@
             <field name="dpi">90</field>
         </record>
         
-
+        <!-- Action de reporte PDF -->
         <record id="report_in_out_products_pdf_action" model="ir.actions.report">
             <field name="name">Reporte de salidas y entradas PDF</field>
             <field name="model">in.out.products.wizard</field>
@@ -37,6 +38,7 @@
             <field name="paperformat_id" ref="report_custom_out_in_products_paperformat"/>
         </record>
 
+        <!-- Template de reporte PDF -->
         <template id="in_out_products_template">
             <t t-call="web.html_container">
                 <t t-call="web.layout">
