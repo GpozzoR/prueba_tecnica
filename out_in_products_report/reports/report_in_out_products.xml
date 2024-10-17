@@ -83,32 +83,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <t t-foreach="docs[0]" t-as="doc">
-                                        <tr>
-                                            <td><t t-esc="doc['name']"/></td>
-                                            <td><t t-esc="doc['date']"/></td>
-                                            <td><t t-esc="doc['move']"/></td>
-                                            <td><t t-esc="doc['reference']"/></td>
-                                            <td><t t-esc="doc['qty']"/></td>
-                                        </tr>
-                                    </t>
-                                    <t t-foreach="docs[1]" t-as="doc">
-                                        <tr>
-                                            <td><t t-esc="doc['name']"/></td>
-                                            <td><t t-esc="doc['date']"/></td>
-                                            <td><t t-esc="doc['move']"/></td>
-                                            <td><t t-esc="doc['reference']"/></td>
-                                            <td><t t-esc="doc['qty']"/></td>
-                                        </tr>
-                                    </t>
-                                    <t t-foreach="docs[2]" t-as="doc">
-                                        <tr>
-                                            <td><t t-esc="doc['name']"/></td>
-                                            <td><t t-esc="doc['date']"/></td>
-                                            <td><t t-esc="doc['move']"/></td>
-                                            <td><t t-esc="doc['reference']"/></td>
-                                            <td><t t-esc="doc['qty']"/></td>
-                                        </tr>
+                                    <t t-foreach="docs" t-as="o">
+                                        <t t-foreach="o" t-as="doc">
+                                            <tr>
+                                                <td><t t-esc="doc['name']"/></td>
+                                                <td><t t-esc="doc['date']"/></td>
+                                                <td><t t-esc="doc['move']"/></td>
+                                                <td><t t-esc="doc['reference']"/></td>
+                                                <td><t t-esc="doc['qty']"/></td>
+                                            </tr>
+                                        </t>
                                     </t>
                                 </tbody>
                             </table>
