@@ -169,10 +169,14 @@ class ReportOutInProductsPdf(models.AbstractModel):
             """
             self.env.cr.execute(query)
             dic = self.env.cr.dictfetchall()
+            if not dic:
+                raise ValidationError("No se ha encontrado movimientos relacionados")
+                
+            products = [i['default_code']for i in dic]
 
             query = f"""SELECT  id
             FROM product_product
-            WHERE default_code IN {tuple([i['default_code']for i in dic])}
+            WHERE default_code {f"IN {tuple(products)}" if len(products) > 1 else f"= '{products[0]}'"}
             """
             self.env.cr.execute(query)
             dic = self.env.cr.dictfetchall()
