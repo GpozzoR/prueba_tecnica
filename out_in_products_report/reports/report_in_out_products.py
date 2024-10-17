@@ -66,7 +66,9 @@ class ReportOutInProductsXlsx(models.AbstractModel):
             """
             self.env.cr.execute(query)
             dic = self.env.cr.dictfetchall()
-
+            
+            if not dic:
+                raise ValidationError("No se ha encontrado movimientos relacionados")
             products = [i['default_code']for i in dic]
 
             query = f"""SELECT  id
