@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        
+
+        <record id="report_in_out_products_xlsx_action" model="ir.actions.report">
+            <field name="name">Reporte de salidas y entradas XLSX</field>
+            <field name="model">in.out.products.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">out_in_products_report.report_in_out_products_xlsx</field>
+            <field name="report_file">out_in_products_report.report_in_out_products_xlsx</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_in_out_products_wizard"/>
+            <field name="attachment_use" eval="False"/>
+        </record>
+
+        <record id="report_custom_out_in_products_paperformat" model="report.paperformat">
+            <field name="name">Papel de reporte de salida y entrada de productos</field>
+            <field name="format">Letter</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">10.00</field>
+            <field name="margin_bottom">10.00</field>
+            <field name="margin_left">10.00</field>
+            <field name="margin_right">10.00</field>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+        
+
+        <record id="report_in_out_products_pdf_action" model="ir.actions.report">
+            <field name="name">Reporte de salidas y entradas PDF</field>
+            <field name="model">in.out.products.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">out_in_products_report.in_out_products_template</field>
+            <field name="report_file">out_in_products_report.in_out_products_template</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_in_out_products_wizard"/>
+            <field name="paperformat_id" ref="report_custom_out_in_products_paperformat"/>
+        </record>
+
+        <template id="in_out_products_template">
+            <t t-call="web.html_container">
+                <t t-call="web.layout">
+                    <div class="page"> 
+                        <style>
+                            .container{
+                                width:100%; 
+                                overflow:hidden;
+                            }
+                            table {
+                                    width: 100%;
+                                    border-collapse: collapse;
+                                }
+
+                            th {
+                                background-color: #4CAF50; /* Color de fondo del encabezado */
+                                color: white; /* Color del texto del encabezado */
+                                padding: 10px;
+                                text-align: left;
+                            }
+
+                            td {
+                                padding: 10px;
+                                border-bottom: 1px solid #ddd; /* Línea de separación entre filas */
+                            }
+
+                            tr:hover {
+                                background-color: #f1f1f1; /* Color de fondo al pasar el cursor */
+                            }
+
+                            tr:last-child td {
+                                border-bottom: none; /* Eliminar la línea inferior en la última fila */
+                            }
+                        </style>
+                        <div name="container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Fecha</th>
+                                        <th>Tipo de Movimiento</th>
+                                        <th>Referencia</th>
+                                        <th>Cantidad </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="docs[0]" t-as="doc">
+                                        <tr>
+                                            <td><t t-esc="doc['name']"/></td>
+                                            <td><t t-esc="doc['date']"/></td>
+                                            <td><t t-esc="doc['move']"/></td>
+                                            <td><t t-esc="doc['reference']"/></td>
+                                            <td><t t-esc="doc['qty']"/></td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="docs[1]" t-as="doc">
+                                        <tr>
+                                            <td><t t-esc="doc['name']"/></td>
+                                            <td><t t-esc="doc['date']"/></td>
+                                            <td><t t-esc="doc['move']"/></td>
+                                            <td><t t-esc="doc['reference']"/></td>
+                                            <td><t t-esc="doc['qty']"/></td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="docs[2]" t-as="doc">
+                                        <tr>
+                                            <td><t t-esc="doc['name']"/></td>
+                                            <td><t t-esc="doc['date']"/></td>
+                                            <td><t t-esc="doc['move']"/></td>
+                                            <td><t t-esc="doc['reference']"/></td>
+                                            <td><t t-esc="doc['qty']"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+       
+                    
+                        
+
+
+
+
+</odoo>
